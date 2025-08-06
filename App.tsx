@@ -1,22 +1,17 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * @format
- */
+import {  StyleSheet } from 'react-native'
+import React from 'react'
+import BaseScreen from './src/BaseScreen'
+import { GestureHandlerRootView } from 'react-native-gesture-handler';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 
-import { NewAppScreen } from '@react-native/new-app-screen';
-import { StatusBar, StyleSheet, useColorScheme, View } from 'react-native';
-
-function App() {
-  const isDarkMode = useColorScheme() === 'dark';
-
+export default function App() {
   return (
-    <View style={styles.container}>
-      <StatusBar barStyle={isDarkMode ? 'light-content' : 'dark-content'} />
-      <NewAppScreen templateFileName="App.tsx" />
-    </View>
-  );
+    <GestureHandlerRootView style={styles.container}>
+      <QueryClientProvider client={new QueryClient()}>
+        <BaseScreen />
+      </QueryClientProvider>
+    </GestureHandlerRootView>
+  )
 }
 
 const styles = StyleSheet.create({
@@ -24,5 +19,3 @@ const styles = StyleSheet.create({
     flex: 1,
   },
 });
-
-export default App;
